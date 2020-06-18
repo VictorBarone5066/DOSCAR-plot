@@ -69,6 +69,8 @@ class AtomGroup:
     dDnDosSum = None
     
     def __init__(self, inLoc, atomRange, nedos, atomVals = None, spin = False, atomType = "???"):
+        if(not isinstance(atomRange, list)):
+            print("AtomGroup():  atomRange (the second argument to this function) needs to be supplied as a list")
         if(len(atomRange) != 2 and atomVals == None):
             print("AtomGroup Initialize:  atomRange needs two values, in list form: [low, high].  The numbers are inclusive.\n")
             return
@@ -519,7 +521,7 @@ def DOSGridGraphFull(pathToIn, pathToOut, outType, fileList):
         else:                    
             ax.tick_params('x', labelbottom=False)
         if(row == 3 and col == 0):
-            ax.set_ylabel('Electronic DOS (|states| / eV)', labelpad=10)  
+            ax.set_ylabel('Electronic DOS (states / eV)', labelpad=10)  
         if(row == 0 and col == 1):
             ax.set_title(r"$E-E_\mathrm{F}$ (eV)")              
         if(col == 1 or col == 2):
